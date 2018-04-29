@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>DOJRP CAD / MDT</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Modern new CAD for DOJRP">
+	<meta name="author" content="Tom K. Civ-305 for DOJRP">    
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> 
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+	<link id="theme-main" rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body onLoad="setup()">
+	<!--Profile header, nav bar, staff button, patrol button-->
+	<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
+			<div class="wrap-login100" style="width: 100%; min-height: 100px">	
+				<h3 style="color: black; float: left; margin-top: -30px" id="headerName"></h3>
+				<img src="assets/images/profileSettings.png" alt="profile settings">
+				<div class="wrap-login100-form-btn" style="min-width: 10%; max-width: 20%; margin-top: -40px; float:right">
+					<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" onClick="selectDept()">
+							Patrol
+						</button>
+				</div>
+				<div class="wrap-login100-form-btn" style="min-width: 15%; max-width: 20%; margin-top: -40px; float:right; margin-right: 5px; visibility: hidden" id="staffContainer">
+					<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" onClick="staff()" style="background-color: darkred" id="staffButton">
+							Staff
+						</button>
+				</div>
+			</div>
+	</div>
+	
+	<!-- Updates-->
+	<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px">
+			<div class="wrap-login100" style="width: 100%; min-height: 100px; background-color: #1d1d1d">	
+				<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">Updates / Announcements: (Latest Update 29/04/18) </h5>
+         		<p class="grey-text" align="center" id="announcementText"></p>
+			</div>
+	</div>
+	
+	<!-- Suggestions, bug reports and stats -->
+	<div class="container-login100-form-btn">
+		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%">
+			<div class="wrap-login100" style="min-height: 300px; background-color: #1d1d1d; width: 100%">	
+				<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">CAD / MDT Suggestions: </h5>
+         		<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px" placeholder="Suggestion goes here..."></textarea>
+				<div class="wrap-login100-form-btn">
+				<div class="login100-form-bgbtn"></div>
+					<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
+						Submit
+					</button>
+				</div>
+			</div>
+			
+		</div>
+		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%">
+				<div class="wrap-login100" style="min-height: 300px; background-color: #1d1d1d; width: 100%">	
+					<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">CAD / MDT Bug Reports: </h5>
+					<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px" placeholder="Bug report goes here..."></textarea>
+					<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
+							Submit
+						</button>
+					</div>
+				</div>
+
+		</div>
+		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%; min-height: 355px">
+				<div class="wrap-login100" style="min-height: 355px; background-color: #1d1d1d; width: 100%">	
+					<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">Community Wide Stats: </h5>
+					<h6 align="center" style="font-size: 15px; color: white">For the month of April: </h6>
+					<p style="min-width: 100%; margin-top: 20%; color: white; font-size: 20px">Tickets Written: </p>
+					<p style="min-width: 100%; margin-top: 5%; color: white; font-size: 20px">Arrests Filed: </p>
+					<p style="min-width: 100%; margin-top: 5%; color: white; font-size: 20px">Warnings Given: </p>
+				</div>
+
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<!--Java Script:-->
+	<!--===============================================================================================-->
+	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/js/main.js"></script>
+	<!--Init firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+
+	<script>
+		var currentUser = {};
+		var lspd = false;
+		var civ = false;
+		var bcso = false;
+		var fire = false;
+		var coms = false;
+		var sahp = false;
+		
+		function setup() {
+			var config = {
+				apiKey: "AIzaSyD6N15xy8b5ZaFmbrvuzuRIUW3AX7Czifg",
+				authDomain: "dojrp-cad.firebaseapp.com",
+				databaseURL: "https://dojrp-cad.firebaseio.com",
+				projectId: "dojrp-cad",
+				storageBucket: "",
+				messagingSenderId: "533785462743"
+			  };
+			firebase.initializeApp(config);
+			
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					currentUser = user;
+					var uid = user.uid;
+					
+					//global data
+					firebase.database().ref().once('value', function(snap) {
+						document.getElementById('announcementText').innerHTML = snap.child('latestAnnouncement').val();
+					});					
+					//user data
+					var userRef = firebase.database().ref('users/'+uid);
+					userRef.once('value', function(snapshot) {
+						if (snapshot.child('queued').val() == true) {
+							window.location = "queue";
+						}
+						
+						document.getElementById('headerName').innerHTML = snapshot.child('dojname').val();
+						lspd = snapshot.child('lspd');
+						civ = snapshot.child('civ');
+						bcso = snapshot.child('bcso');
+						fire = snapshot.child('fire');
+						coms = snapshot.child('comms');
+						sahp = snapshot.child('sahp');
+					});
+				}
+				else {
+					window.location = "index";
+				}
+			});
+		}  
+		
+		function loadPage() {
+			
+		}
+	</script>
+	
+	<!--Is user queued?-->
+	<script>
+		
+	</script>
+</body>
+</html>

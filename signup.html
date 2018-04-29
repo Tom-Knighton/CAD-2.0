@@ -46,7 +46,11 @@
 					</div>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" id="tsName">
-						<span class="focus-input100" data-placeholder="Name on TeamSpeak"></span>
+						<span class="focus-input100" data-placeholder="Name on TeamSpeak i.e. Tom K. Civ-305"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="dojname">
+						<span class="focus-input100" data-placeholder="DOJ Name. i.e: Tom K."></span>
 					</div>
 					<div class="wrap-input100 validate-input">
 						<input class="input100" type="text" id="passphrase">
@@ -85,13 +89,6 @@
 	<script src="assets/vendor/bootstrap/js/popper.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="assets/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendor/daterangepicker/moment.min.js"></script>
-	<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
 	<script src="assets/js/main.js"></script>
 	<!--Init firebase-->
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
@@ -118,6 +115,7 @@
 			var passConf = document.getElementById('passwordConfirm').value;
 			var tsName = document.getElementById('tsName').value;
 			var secret = document.getElementById('passphrase').value;
+			var dojname = document.getElementById('dojname').value;
 			
 			var canCreate = true;
 			var globalref = firebase.database().ref();
@@ -129,7 +127,7 @@
 				return;
 			}
 			
-			if (email == "" || email == " " || passConf == "" || passConf == " " || pass == "" || pass == " " || tsName == "" || tsName == " " || secret == "" || secret == " ") {
+			if (email == "" || email == " " || passConf == "" || passConf == " " || pass == "" || pass == " " || tsName == "" || tsName == " " || secret == "" || secret == " " || dojname = "" || dojname = " ") {
 				alert('Please fill out all fields');
 				canCreate = false;
 				return;
@@ -169,7 +167,8 @@
 								ftolead: false,
 								civLimit: 0,
 								displayName: tsName,
-								queued: true
+								queued: true,
+								dojname: dojname
 							});
 						}).then(function() {
 							window.location = "queue";

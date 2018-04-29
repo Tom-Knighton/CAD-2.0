@@ -73,13 +73,7 @@
 	<script src="assets/vendor/bootstrap/js/popper.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="assets/vendor/select2/select2.min.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendor/daterangepicker/moment.min.js"></script>
-	<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
-	<!--===============================================================================================-->
-	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
-	<!--===============================================================================================-->
+	
 	<script src="assets/js/main.js"></script>
 	<!--Init firebase-->
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
@@ -105,10 +99,9 @@
 			var pass = document.getElementById('passwordlogin').value;
 			var gUser = {};
 			firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user) {
-				window.location = "profile";
-				gUser = user;
+				gUser = user.uid;
 			}).then(function() {
-				var userRef = firebase.database().ref('user/'+user.uid);
+				var userRef = firebase.database().ref('users/'+gUser);
 				userRef.once('value', function(snapshot){
 					if (snapshot.child('queued').val() == true) {
 						window.location = "queue";

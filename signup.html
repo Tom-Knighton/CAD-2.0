@@ -149,12 +149,12 @@
 					canCreate = false;
 					return;
 				}
-				
+			}).then(function(){
 				if (canCreate == true) {
 					alert('success');
 					firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user) {
 						
-						firebase.signInWithEmailAndPassword(email, pass).then(function(user){
+						firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user){
 							firebase.database().ref('users/' + user.uid).set({
 								email: email,
 								pass: pass,
@@ -168,14 +168,15 @@
 								admin: false,
 								ftolead: false,
 								civLimit: 0,
-								displayName: tsName
+								displayName: tsName,
+								queued: true
 							});
+						}).then(function() {
+							window.location = "queue";
 						});
 						
 					}
 				)}
-				
-				
 			});
 			
 		}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>DOJRP CAD / MDT</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Modern new CAD for DOJRP">
+	<meta name="author" content="Tom K. Civ-305 for DOJRP">    
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> 
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+	<link id="theme-main" rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body onLoad="setup()">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100" style="width: 700px">
+			<span class="login100-form-title p-b-26" id="dojrp">
+						DOJRP
+			</span>
+			<img src="assets/images/logo.png" alt="DOJRP Logo" style="width: 100%; height: 200px">
+			<h3 style="text-align: center">An FTO member will review your account shortly. If you believe you are seeing this page in error, please contact Tech Support or an FTO Lead.</h3>
+			
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!--Java Script:-->
+	<!--===============================================================================================-->
+	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/daterangepicker/moment.min.js"></script>
+	<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/js/main.js"></script>
+	<!--Init firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+
+	<script>
+		function setup() {
+			var config = {
+				apiKey: "AIzaSyD6N15xy8b5ZaFmbrvuzuRIUW3AX7Czifg",
+				authDomain: "dojrp-cad.firebaseapp.com",
+				databaseURL: "https://dojrp-cad.firebaseio.com",
+				projectId: "dojrp-cad",
+				storageBucket: "",
+				messagingSenderId: "533785462743"
+			  };
+			firebase.initializeApp(config);
+			
+			firebase.auth().onAuthStateChanged(function(user) {
+				if (user) {
+					var uid = user.uid;
+					var userRef = firebase.datatbase().ref('users/'+uid);
+					userRef.on('value', function(snapshot) {
+						if (snapshot.child('queued').val() == false) {
+							window.location = "profile";
+						}
+					});
+				}
+				else {
+					window.location = "index";
+				}
+			});
+		}  
+	</script>
+	
+	<!--Is user queued?-->
+	<script>
+		
+	</script>
+</body>
+</html>

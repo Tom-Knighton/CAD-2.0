@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>DOJRP CAD / MDT</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Modern new CAD for DOJRP">
+	<meta name="author" content="Tom K. Civ-305 for DOJRP">    
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css"> 
+	<!-- Global CSS -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
+	<!-- Plugins CSS -->
+	<link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+
+	<!-- Theme CSS -->  
+	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+	<link id="theme-main" rel="stylesheet" href="assets/css/main.css">
+</head>
+
+<body onLoad="setup()">
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100" style="width: 700px">
+			<span class="login100-form-title p-b-26" id="dojrp">
+						DOJRP - CAD/MDT SIGNUP
+			</span>
+			<img src="assets/images/logo.png" alt="DOJRP Logo" style="width: 100%; height: 200px">
+			<span class="login100-form-title p-b-48">
+						<i class="zmdi zmdi-font"></i>
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid email i.e: name@email.com">
+						<input class="input100" type="text" id="email">
+						<span class="focus-input100" data-placeholder="Email"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" id="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="password" id="passwordConfirm">
+						<span class="focus-input100" data-placeholder="Confirm Password"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="tsName">
+						<span class="focus-input100" data-placeholder="Name on TeamSpeak"></span>
+					</div>
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" id="passphrase">
+						<span class="focus-input100" data-placeholder="Secret Passphrase"></span>
+					</div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" onClick="create()">
+								Create Account
+							</button>
+						</div>
+					</div>
+				<div class="text-center p-t-115">
+					<span class="txt1">
+						Have an account?
+					</span>
+
+					<a class="txt2" href="index">
+						Login &rarr;
+					</a>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!--Java Script:-->
+	<!--===============================================================================================-->
+	<script src="assets/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/bootstrap/js/popper.js"></script>
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/daterangepicker/moment.min.js"></script>
+	<script src="assets/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="assets/js/main.js"></script>
+	<!--Init firebase-->
+	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
+
+	<script>
+		function setup() {
+			var config = {
+				apiKey: "AIzaSyD6N15xy8b5ZaFmbrvuzuRIUW3AX7Czifg",
+				authDomain: "dojrp-cad.firebaseapp.com",
+				databaseURL: "https://dojrp-cad.firebaseio.com",
+				projectId: "dojrp-cad",
+				storageBucket: "",
+				messagingSenderId: "533785462743"
+			  };
+			firebase.initializeApp(config);
+		}  
+	</script>
+	
+	<!--Create account-->
+	<script>
+		function create() {
+			var email = document.getElementById('email').value;
+			var pass = document.getElementById('password').value;
+			var passConf = document.getElementById('passwordConfirm').value;
+			var tsName = document.getElementById('tsName').value;
+			var secret = document.getElementById('passphrase').value;
+			
+			var canCreate = true;
+			var globalref = firebase.database().ref();
+			
+			
+			if (pass != passConf) {
+				alert('Your passwords do not match!');
+				canCreate = false;
+				return;
+			}
+			
+			if (email == "" || email == " " || passConf == "" || passConf == " " || pass == "" || pass == " " || tsName == "" || tsName == " " || secret == "" || secret == " ") {
+				alert('Please fill out all fields');
+				canCreate = false;
+				return;
+			}
+			
+			
+			
+			if (pass.length < 6) {
+				alert('Password must be longer than 6 characters');
+				canCreate = false;
+				return;
+			}
+			
+			globalref.once('value', function(snapshot) {
+				if(secret != snapshot.child('secretphrase').val()) {
+					alert('Secret phrase is incorrect!');
+					canCreate = false;
+					return;
+				}
+				
+				if (canCreate == true) {
+					alert('success');
+					firebase.auth().createUserWithEmailAndPassword(email, pass).then(function(user) {
+						
+						firebase.signInWithEmailAndPassword(email, pass).then(function(user){
+							firebase.database().ref('users/' + user.uid).set({
+								email: email,
+								pass: pass,
+								bcso: false,
+								lspd: false,
+								sahp: false,
+								civ: false,
+								comms: false,
+								fire: false,
+								supervisor: false,
+								admin: false,
+								ftolead: false,
+								civLimit: 0,
+								displayName: tsName
+							});
+						});
+						
+					}
+				)}
+				
+				
+			});
+			
+		}
+	</script>
+</body>
+</html>

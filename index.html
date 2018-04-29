@@ -103,9 +103,20 @@
 		function login() {
 			var email = document.getElementById('emaillogin').value;
 			var pass = document.getElementById('passwordlogin').value;
-			
+			var gUser = {};
 			firebase.auth().signInWithEmailAndPassword(email, pass).then(function(user) {
 				window.location = "profile";
+				gUser = user;
+			}).then(function() {
+				var userRef = firebase.database().ref('user/'+user.uid);
+				userRef.once('value', function(snapshot){
+					if (snapshot.child('queued').val() == true) {
+						window.location = "queue";
+					}
+					else {
+						window.location = "profile";
+					}
+				});
 			}).catch(function(error) {
 				var message = error.message;
 				if (message == "There is no user record corresponding to this identifier. The user may have been deleted.") {

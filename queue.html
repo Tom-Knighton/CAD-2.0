@@ -71,7 +71,7 @@
 			firebase.auth().onAuthStateChanged(function(user) {
 				if (user) {
 					var uid = user.uid;
-					var userRef = firebase.datatbase().ref('users/'+uid);
+					var userRef = firebase.database().ref('users/'+uid);
 					userRef.on('value', function(snapshot) {
 						if (snapshot.child('queued').val() == false) {
 							window.location = "profile";

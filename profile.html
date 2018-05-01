@@ -126,12 +126,19 @@
 		 
 	</div>
 	
-	<div id="selectUnit" class="modal" style="height: 130px;">
+	<div id="selectUnit" class="modal" style="height: 195px;">
 		<div class="modal-content" style="align-content: center; text-align: center">
 			<h2 align="center">Set Identifier</h2>
-			<input class="input100" type="text" id="passwordConfirm" style="background-color: wheat; border-radius: 20px; text-align: center">
+			<input class="input100" type="text" id="unitSet" style="background-color: wheat; border-radius: 20px; text-align: center">
 			<span class="focus-input100"></span>
-			
+			<div class="container-login100-form-btn">
+				<div class="wrap-login100-form-btn">
+					<div class="login100-form-bgbtn"></div>
+						<button class="login100-form-btn" onClick="patrol()">
+							Patrol
+						</button>
+					</div>
+			</div>
 		</div>
 		 
 	</div>
@@ -152,6 +159,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.10.0/firebase.js"></script>
 
 	<script>
+		window.location = "#";
 		var currentUser = {};
 		var lspd = false;
 		var civ = false;
@@ -160,9 +168,9 @@
 		var coms = false;
 		var sahp = false;
 		
-		var selectedDept = {};
-		var selectedServer = {};
-		var selectedIdentifier = {};
+		var selectedDept = "";
+		var selectedServer = "";
+		var selectedIdentifier = "";
 		
 		
 		$(document).ready(function(){
@@ -171,6 +179,7 @@
 		});
 		
 		function setup() {
+			
 			var config = {
 				apiKey: "AIzaSyD6N15xy8b5ZaFmbrvuzuRIUW3AX7Czifg",
 				authDomain: "dojrp-cad.firebaseapp.com",
@@ -274,7 +283,7 @@
 			if (dept == "civ") {
 				if (civ) {
 					selectedDept = "civ"
-					$("#selectDept").modal('close');
+					$("#selectUnit").modal('close');
 					$("#selectDept").modal('open');
 				}
 				else {
@@ -282,21 +291,56 @@
 				}
 			}
 		}
-		
 		function updateServerStats(dept, identifier) {
-			console.log("done");
+			console.log("hello");
 		}
+		function patrol() {
+			var unit = document.getElementById('unitSet').value;
+			if (IsNullOrWhiteSpace(unit)) {
+				alert('Please enter a valid indentifier');
+			}
+			else {
+				self.updateServerStats(selectedDept, selectedIdentifier);
+					
+					
+				firebase.database().ref('users/'+currentUser.uid).update({
+					lastUnit: selectedIdentifier,
+					lastServer: selectedServer,
+					lastDept: selectedDept
+					
+				}).then(function(){
+					console.log('hi');
+					if (selectedDept == "lspd" || selectedDept == "sahp" || selectedDept == "bcso") {
+						window.location = "leo";
+					}
+					else if (selectedDept == "civ") {
+						window.location = "civ";
+					}
+					else if (selectedDept == "coms") {
+						window.location = "mdt";
+					}
+					else if (selectedDept == "fire") {
+						window.location = "fire";
+					}
+				});
+					
+				}
+			
+		}
+		
 		$("#serverChoice").change(function() {
 			selectedServer = $(this).val();
 			$("#selectDept").modal('open');
 			$('#selectServer').modal('close');
 
 		});
+		
+		function IsNullOrWhiteSpace( value) {
+    		if (value== null) return true;
+    		return value.replace(/\s/g, '').length == 0;
+		}
 	</script>
 	
-	<!--Is user queued?-->
-	<script>
-		
-	</script>
+
 </body>
 </html>

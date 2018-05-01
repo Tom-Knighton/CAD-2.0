@@ -18,7 +18,7 @@
 	<!-- Theme CSS -->  
 	<link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
 	<link id="theme-main" rel="stylesheet" href="assets/css/main.css">
-	<link type="text/css" rel="stylesheet" href="assets/css/materialize.min.css"  media="screen,projection" id="theme-material"/>
+	<link type="text/css" rel="stylesheet" href="assets/css/materialize.css"  media="screen,projection" id="theme-material"/>
 	
 </head>
 
@@ -28,11 +28,11 @@
 			<div class="wrap-login100" style="width: 100%; min-height: 100px">
 			
 				<button style="max-width: 30px; max-height: 30px; float: left; margin-top: -25px"><img src="assets/images/gear.png" alt="profile settings" style="max-width: 40px; max-height: 40px" ></button>
-				<h3 style="color: black; float: left; margin-top: -30px; display: inline-block; margin-left: 40px" id="headerName"></h3>
+				<h3 style="color: black; float: left; margin-top: -30px; display: inline-block; margin-left: 40px; font-size: 40px" id="headerName"></h3>
 				
 				<div class="wrap-login100-form-btn" style="min-width: 10%; max-width: 20%; margin-top: -30px; float:right">
 					<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="selectDept()">
+						<button class="login100-form-btn" onClick="selectServer()">
 							Patrol
 						</button>
 				</div>
@@ -58,8 +58,8 @@
 		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%">
 			<div class="wrap-login100" style="min-height: 300px; background-color: #1d1d1d; width: 100%">	
 				<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">CAD / MDT Suggestions: </h5>
-         		<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px; background-color: white; border-radius: 20px" placeholder="Suggestion goes here..."></textarea>
-				<div class="wrap-login100-form-btn">
+         		<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px; background-color: white; border-radius: 20px; min-width: 100%" placeholder="Suggestion goes here..."></textarea>
+				<div class="wrap-login100-form-btn" style="margin-top: 10px">
 				<div class="login100-form-bgbtn"></div>
 					<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
 						Submit
@@ -71,18 +71,18 @@
 		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%">
 				<div class="wrap-login100" style="min-height: 300px; background-color: #1d1d1d; width: 100%">	
 					<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">CAD / MDT Bug Reports: </h5>
-					<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px; background-color: white; border-radius: 20px" placeholder="Bug report goes here..."></textarea>
-					<div class="wrap-login100-form-btn">
+					<textarea style="width: 100%; min-height: 200px; max-width: 100%; margin-top: 10px; padding: 10px; background-color: white; border-radius: 20px; min-width: 100%" placeholder="Bug report goes here..."></textarea>
+					<div class="wrap-login100-form-btn" style="margin-top: 10px">
 					<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
+						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue; margin-top: " >
 							Submit
 						</button>
 					</div>
 				</div>
 
 		</div>
-		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%; min-height: 355px">
-				<div class="wrap-login100" style="min-height: 355px; background-color: #1d1d1d; width: 100%">	
+		<div style="margin-top: 10px; margin-left: 10px; margin-right: 10px; display: inline-block; max-width: 30%; min-width: 350px; width: 30%">
+				<div class="wrap-login100" style="min-height: 363px; background-color: #1d1d1d; width: 100%">	
 					<h5 align="center" style="font-size: 30px; margin-top: -50px; color: white">Community Wide Stats: </h5>
 					<h6 align="center" style="font-size: 15px; color: white">For the month of April: </h6>
 					<p style="min-width: 100%; margin-top: 20%; color: white; font-size: 20px" align="center">Tickets Written: </p>
@@ -94,38 +94,47 @@
 		
 	</div>
 	
-	
-	<div id="modal1" class="modal" style="height: 345px">
+	<div id="selectServer" class="modal" style="height: 130px">
 		<div class="modal-content">
-		  	<h4>Select Server</h4>
-			<div class="wrap-login100-form-btn">
-				<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
-							Server 1
-				</button>
-			</div>
-			<div class="wrap-login100-form-btn" style="margin-top: 15px">
-				<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
-							Server 2
-				</button>
-			</div>
-			<div class="wrap-login100-form-btn" style="margin-top: 15px">
-				<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
-							Server 3
-				</button>
-			</div>
-			<div class="wrap-login100-form-btn" style="margin-top: 15px">
-				<div class="login100-form-bgbtn"></div>
-						<button class="login100-form-btn" onClick="staff()" style="background-color: dodgerblue" >
-							Server 4
-				</button>
-			</div>
+			<h2 align="center">Select Server</h2>
+			<select id="serverChoice" style="width: 100%; text-align: center; margin-top: 20px">
+				<option value="0" selected="selected" disabled>Choose Server</option>
+				<option value="server1">Server 1</option>
+				<option value="server2">Server 2</option>
+				<option value="server3">Server 3</option>
+				<option value="server4">Server 4</option>
+			</select>
 		</div>
-		
-	  </div>
+		 
+	</div>
 	
+	<div id="selectDept" class="modal" style="height: 545px; width: 1000px; background-color: white">
+		<div class="modal-content" style="align-content: center; text-align: center">
+			<h2 align="center">Select Department</h2>
+			<div>
+				<button onClick="selectDept('coms')"><img src="assets/images/comms.png" alt="comms" style="width: 200px; height: 200px; float: left; margin-right: 50px"></button>
+				<button onClick="selectDept('bcso')"><img src="assets/images/bcso.png" alt="BCSO" style="width: 200px; height: 200px; float: left; margin-right: 50px"></button>
+				<button onClick="selectDept('sahp')"><img src="assets/images/sahp.png" alt="SAHP" style="width: 200px; height: 200px; float: left; margin-right: 50px"></button>
+			</div>
+			<div>
+				<button onClick="selectDept('lspd')"><img src="assets/images/lspd.png" alt="LSPD" style="width: 200px; height: 200px; float: left; margin-right: 50px; margin-top: 50px"></button>
+				<button onClick="selectDept('fire')"><img src="assets/images/lsfd.png" alt="LSFD" style="width: 200px; height: 200px; float: left; margin-right: 50px; margin-top: 50px"></button>
+				<button onClick="selectDept('civ')"><img src="assets/images/civ.png" alt="Civillian" style="width: 200px; height: 200px; float: left; margin-right: 50px; margin-top: 50px"></button>
+			</div>
+			
+		</div>
+		 
+	</div>
+	
+	<div id="selectUnit" class="modal" style="height: 130px;">
+		<div class="modal-content" style="align-content: center; text-align: center">
+			<h2 align="center">Set Identifier</h2>
+			<input class="input100" type="text" id="passwordConfirm" style="background-color: wheat; border-radius: 20px; text-align: center">
+			<span class="focus-input100"></span>
+			
+		</div>
+		 
+	</div>
 	
 	
 	
@@ -135,7 +144,6 @@
 	<!--===============================================================================================-->
 	<script src="assets/vendor/animsition/js/animsition.min.js"></script>
 	<!--===============================================================================================-->
-	<script src="assets/vendor/bootstrap/js/popper.js"></script>
 	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/materialize.min.js"></script>
 	<!--===============================================================================================-->
@@ -151,11 +159,16 @@
 		var fire = false;
 		var coms = false;
 		var sahp = false;
+		
+		var selectedDept = {};
+		var selectedServer = {};
+		var selectedIdentifier = {};
+		
+		
 		$(document).ready(function(){
     		$('.modal').modal();
-			$('select').formSelect();
-			$('#modal1').modal('open');
-  		});
+
+		});
 		
 		function setup() {
 			var config = {
@@ -185,12 +198,12 @@
 						}
 						
 						document.getElementById('headerName').innerHTML = snapshot.child('dojname').val();
-						lspd = snapshot.child('lspd');
-						civ = snapshot.child('civ');
-						bcso = snapshot.child('bcso');
-						fire = snapshot.child('fire');
-						coms = snapshot.child('comms');
-						sahp = snapshot.child('sahp');
+						lspd = snapshot.child('lspd').val();
+						civ = snapshot.child('civ').val();
+						bcso = snapshot.child('bcso').val();
+						fire = snapshot.child('fire').val();
+						coms = snapshot.child('comms').val();
+						sahp = snapshot.child('sahp').val();
 					});
 				}
 				else {
@@ -199,9 +212,86 @@
 			});
 		}  
 		
-		function loadPage() {
+		function selectServer() {
+			$('#selectServer').modal('open');
+		}
+		
+		function lspd() {
 			
 		}
+		
+		function selectDept(dept) {
+			if (dept == "lspd") {
+				if (lspd) {
+					selectedDept = "lspd"
+					$("#selectUnit").modal('open');
+					$("#selectDept").modal('close');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+			if (dept == "bcso") {
+				if (bcso) {
+					selectedDept = "bcso"
+					$("#selectUnit").modal('open');
+					$("#selectDept").modal('close');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+			if (dept == "sahp") {
+				if (sahp) {
+					selectedDept = "sahp"
+					$("#selectUnit").modal('open');
+					$("#selectDept").modal('close');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+			if (dept == "coms") {
+				if (coms) {
+					selectedDept = "comms"
+					$("#selectUnit").modal('open');
+					$("#selectDept").modal('close');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+			if (dept == "fire") {
+				if (fire) {
+					selectedDept = "fire"
+					$("#selectUnit").modal('open');
+					$("#selectDept").modal('close');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+			if (dept == "civ") {
+				if (civ) {
+					selectedDept = "civ"
+					$("#selectDept").modal('close');
+					$("#selectDept").modal('open');
+				}
+				else {
+					alert('You do not have access to this department');
+				}
+			}
+		}
+		
+		function updateServerStats(dept, identifier) {
+			console.log("done");
+		}
+		$("#serverChoice").change(function() {
+			selectedServer = $(this).val();
+			$("#selectDept").modal('open');
+			$('#selectServer').modal('close');
+
+		});
 	</script>
 	
 	<!--Is user queued?-->
